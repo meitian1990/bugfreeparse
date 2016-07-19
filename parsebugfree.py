@@ -39,7 +39,7 @@ class parsebugfree():
     Android_everybody_bugnum_reslove=dict()#Android每个人每天解决的bug数量
     server_everybody_bugnum_reslove=dict()#server每个人每天解决的bug数量
     FE_everybody_bugnum_reslove=dict()#FE每个人每天解决的bug数量
-    #下面的数据为统计BUG.xml的每个sheet页的行数，方便插入数据
+    #下面的数据为统计BUG.xml的每个sheet页的行数，方便插入数据 
     sheet1num=1
     sheet2num=1
     sheet3num=1
