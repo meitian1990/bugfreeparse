@@ -15,6 +15,8 @@ class parsebugfree():
     notnugnum=0#不是bug的数量
     unablereproducebugnum=0#无法重现bug数量
     repeatbugnum=0#重复bug数量
+    specialnum=0#专项bug数量
+    
     #每日创建bug数
     createddate=dict()#存储每日的bug创建数量
     ioscreateddate=dict()
@@ -167,12 +169,14 @@ class parsebugfree():
                         sheet15.write(self.sheet15num,10,data["BUG重新打开次数"])
                         self.sheet15num=self.sheet15num+1
                     
-                    if "【冒烟】" in data["主题"] or "[冒烟]" in data["主题"]:
+                    if "【冒烟】" in data["主题"] or "[冒烟]" in data["主题"] or "【冒烟未通过】" in data["主题"] or "[冒烟未通过]" in data["主题"]:
                         self.newrowdata(sheet4,self.sheet4num,data["需求名称"],data["需求ID"],data["BUGID"],data["主题"],data["经办人"],data["问题解决人"],data["解决时间"],data["创建时间"],data["BUG解决方案"],data["BUG状态"])   
                         self.sheet4num=self.sheet4num+1
-                    elif "【接口】" in data["主题"] or "[接口]" in data["主题"]:
+                    elif "【接口】" in data["主题"] or "[接口]" in data["主题"] or "【接口测试】" in data["主题"] or "[接口测试]" in data["主题"]:
                         self.newrowdata(sheet5,self.sheet5num,data["需求名称"],data["需求ID"],data["BUGID"],data["主题"],data["经办人"],data["问题解决人"],data["解决时间"],data["创建时间"],data["BUG解决方案"],data["BUG状态"])   
                         self.sheet5num=self.sheet5num+1
+                    elif "[专项测试]" in data["主题"] or "【专项测试】" in data["主题"]:
+                        self.specialnum=self.specialnum+1
 
                 elif data["BUG解决方案"]=="不是Bug":
                     self.newrowdata(sheet8,self.sheet8num,data["需求名称"],data["需求ID"],data["BUGID"],data["主题"],data["经办人"],data["问题解决人"],data["解决时间"],data["创建时间"],data["BUG解决方案"],data["BUG状态"])                
@@ -194,12 +198,15 @@ class parsebugfree():
                         sheet15.write(self.sheet15num,10,data["BUG重新打开次数"])
                         self.sheet15num=self.sheet15num+1
                     
-                    if "冒烟" in data["主题"]:
+                    if "【冒烟】" in data["主题"] or "[冒烟]" in data["主题"] or "【冒烟未通过】" in data["主题"] or "[冒烟未通过]" in data["主题"]:
                         self.newrowdata(sheet4,self.sheet4num,data["需求名称"],data["需求ID"],data["BUGID"],data["主题"],data["经办人"],data["问题解决人"],data["解决时间"],data["创建时间"],data["BUG解决方案"],data["BUG状态"])   
                         self.sheet4num=self.sheet4num+1
-                    elif "接口" in data["主题"]:
+                    elif "【接口】" in data["主题"] or "[接口]" in data["主题"] or "【接口测试】" in data["主题"] or "[接口测试]" in data["主题"]:
                         self.newrowdata(sheet5,self.sheet5num,data["需求名称"],data["需求ID"],data["BUGID"],data["主题"],data["经办人"],data["问题解决人"],data["解决时间"],data["创建时间"],data["BUG解决方案"],data["BUG状态"])   
                         self.sheet5num=self.sheet5num+1
+                    elif "[专项测试]" in data["主题"] or "【专项测试】" in data["主题"]:
+                        self.specialnum=self.specialnum+1
+                        
                 elif data["BUG解决方案"]=="遗留" or data["BUG解决方案"]=="以后解决":
                     self.newrowdata(sheet7,self.sheet7num,data["需求名称"],data["需求ID"],data["BUGID"],data["主题"],data["经办人"],data["问题解决人"],data["解决时间"],data["创建时间"],data["BUG解决方案"],data["BUG状态"])                
                     self.sheet7num=self.sheet7num+1
@@ -211,12 +218,14 @@ class parsebugfree():
                         sheet15.write(self.sheet15num,10,data["BUG重新打开次数"])
                         self.sheet15num=self.sheet15num+1
                     
-                    if "【冒烟】" in data["主题"] or "[冒烟]" in data["主题"]:
+                    if "【冒烟】" in data["主题"] or "[冒烟]" in data["主题"] or "【冒烟未通过】" in data["主题"] or "[冒烟未通过]" in data["主题"]:
                         self.newrowdata(sheet4,self.sheet4num,data["需求名称"],data["需求ID"],data["BUGID"],data["主题"],data["经办人"],data["问题解决人"],data["解决时间"],data["创建时间"],data["BUG解决方案"],data["BUG状态"])   
                         self.sheet4num=self.sheet4num+1
-                    elif "【接口】" in data["主题"] or "[接口]" in data["主题"]:
+                    elif "【接口】" in data["主题"] or "[接口]" in data["主题"] or "【接口测试】" in data["主题"] or "[接口测试]" in data["主题"]:
                         self.newrowdata(sheet5,self.sheet5num,data["需求名称"],data["需求ID"],data["BUGID"],data["主题"],data["经办人"],data["问题解决人"],data["解决时间"],data["创建时间"],data["BUG解决方案"],data["BUG状态"])   
                         self.sheet5num=self.sheet5num+1
+                    elif "[专项测试]" in data["主题"] or "【专项测试】" in data["主题"]:
+                        self.specialnum=self.specialnum+1
                 else:
                     print("未知的解决方案：",data["BUG解决方案"],"；对应的BUGID：",data["BUGID"])
                 f.save("./BUG分析.xls")
@@ -267,7 +276,8 @@ class parsebugfree():
         sheet1.write(0,9,"不是BUG数",self.cellstype())
         sheet1.write(0,10,"重复BUG数",self.cellstype())
         sheet1.write(0,11,"无法重现BUG数",self.cellstype())
-        self.celwidth(sheet1,12)
+        sheet1.write(0,12,"专项测试BUG数",self.cellstype())
+        self.celwidth(sheet1,13)
 ##        for i in range(9):
 ##            sheet1.col(i) .width=256*20   
 
@@ -422,6 +432,7 @@ class parsebugfree():
         sheet1.write(1,9,self.notnugnum)
         sheet1.write(1,10,self.repeatbugnum)
         sheet1.write(1,11,self.unablereproducebugnum)
+        sheet1.write(1,12,self.specialnum)
     
 
         m=1#用于存储当前创建bug存储的列数
