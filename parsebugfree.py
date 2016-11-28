@@ -144,21 +144,26 @@ class parsebugfree():
             workbook = xlrd.open_workbook(i)
             sheet=workbook.sheet_by_index(0)
             #print(sheet.name,sheet.nrows,sheet.ncols)
-            
+            print("正在处理的excel：",i)
             for i in range(2,sheet.nrows):
-                data=dict()
-                data["需求名称"]=sheet.cell(i,5).value
-                data["需求ID"]=sheet.cell(i,4).value
-                data["BUGID"]=sheet.cell(i,6).value
-                data["主题"]=sheet.cell(i,7).value
-                data["经办人"]=sheet.cell(i,11).value
-                data["问题解决人"]=sheet.cell(i,12).value
-                data["解决时间"]=sheet.cell(i,13).value[:10]
-                data["创建时间"]=sheet.cell(i,15).value[:10]
-                data["BUG解决方案"]=sheet.cell(i,18).value
-                data["BUG状态"]=sheet.cell(i,8).value
-                data["BUG重新打开次数"]=sheet.cell(i,10).value
-                #print(data,"\n")
+                try:
+                    data=dict()
+                    data["需求名称"]=sheet.cell(i,5).value
+                    data["需求ID"]=sheet.cell(i,4).value
+                    data["BUGID"]=sheet.cell(i,6).value
+                    data["主题"]=sheet.cell(i,7).value
+                    data["经办人"]=sheet.cell(i,11).value
+                    data["问题解决人"]=sheet.cell(i,12).value
+                    data["解决时间"]=sheet.cell(i,13).value[:10]
+                    data["创建时间"]=sheet.cell(i,15).value[:10]
+                    data["BUG解决方案"]=sheet.cell(i,18).value
+                    data["BUG状态"]=sheet.cell(i,8).value
+                    data["BUG重新打开次数"]=sheet.cell(i,10).value
+                    #print(data,"\n")
+                except Exception as e:
+                    print(e)
+                    print("数据有问题的行：",i)
+                    break
                 
                 if data["BUG解决方案"]=="已解决" or data["BUG解决方案"]=="未解决":
                     self.newrowdata(sheet2,self.sheet2num,data["需求名称"],data["需求ID"],data["BUGID"],data["主题"],data["经办人"],data["问题解决人"],data["解决时间"],data["创建时间"],data["BUG解决方案"],data["BUG状态"])
