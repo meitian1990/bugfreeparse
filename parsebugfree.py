@@ -148,17 +148,28 @@ class parsebugfree():
             for i in range(2,sheet.nrows):
                 try:
                     data=dict()
-                    data["需求名称"]=sheet.cell(i,5).value
-                    data["需求ID"]=sheet.cell(i,4).value
-                    data["BUGID"]=sheet.cell(i,6).value
-                    data["主题"]=sheet.cell(i,7).value
-                    data["经办人"]=sheet.cell(i,11).value
-                    data["问题解决人"]=sheet.cell(i,12).value
-                    data["解决时间"]=sheet.cell(i,13).value[:10]
-                    data["创建时间"]=sheet.cell(i,15).value[:10]
-                    data["BUG解决方案"]=sheet.cell(i,18).value
-                    data["BUG状态"]=sheet.cell(i,8).value
-                    data["BUG重新打开次数"]=sheet.cell(i,10).value
+##                    data["需求名称"]=sheet.cell(i,5).value
+##                    data["需求ID"]=sheet.cell(i,4).value
+##                    data["BUGID"]=sheet.cell(i,6).value
+##                    data["主题"]=sheet.cell(i,7).value
+##                    data["经办人"]=sheet.cell(i,11).value
+##                    data["问题解决人"]=sheet.cell(i,12).value
+##                    data["解决时间"]=sheet.cell(i,13).value[:10]
+##                    data["创建时间"]=sheet.cell(i,15).value[:10]
+##                    data["BUG解决方案"]=sheet.cell(i,18).value
+##                    data["BUG状态"]=sheet.cell(i,8).value
+##                    data["BUG重新打开次数"]=sheet.cell(i,10).value
+                    data["需求名称"]=sheet.cell(i,4).value
+                    data["需求ID"]=sheet.cell(i,3).value
+                    data["BUGID"]=sheet.cell(i,5).value
+                    data["主题"]=sheet.cell(i,6).value
+                    data["经办人"]=sheet.cell(i,10).value
+                    data["问题解决人"]=sheet.cell(i,11).value
+                    data["解决时间"]=sheet.cell(i,12).value[:10]
+                    data["创建时间"]=sheet.cell(i,14).value[:10]
+                    data["BUG解决方案"]=sheet.cell(i,17).value
+                    data["BUG状态"]=sheet.cell(i,7).value
+                    data["BUG重新打开次数"]=sheet.cell(i,9).value
                     #print(data,"\n")
                 except Exception as e:
                     print(e)
