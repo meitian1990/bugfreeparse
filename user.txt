@@ -29,6 +29,8 @@
 杨训政，server
 李强，server
 张化仁，server
+田聪，server
+朱建超，server
 周德山，Android
 牟沛文，Android
 丁倩，Android
@@ -53,6 +55,7 @@
 李伯坤，ios
 赵卫兵，ios
 郭广涛，ios
+孙立尧，ios
 李显锋，FE
 陆云海，FE
 金雷，FE
@@ -60,3 +63,4 @@
 赵慧杰，FE
 周涵，FE
 张鹏，FE
+张所勇，FE
